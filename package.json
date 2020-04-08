@@ -1,10 +1,11 @@
 {
-  "name": "vue-apollo-decorator",
-  "author": "Chanlito Hem <chanlitohem@gmail.com>",
-  "version": "0.11.3",
+  "name": "vue-apollo-decorators",
+  "author": "Stefan Wimmer <info@stefanwimmer128.eu>",
+  "version": "1.0.0",
   "description": "Use decorator to create Vue Apollo smart queries.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.umd.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -15,33 +16,32 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/chanlito/vue-apollo-decorator"
+    "url": "https://github.com/stefanwimmer128/vue-apollo-decorators"
   },
   "scripts": {
-    "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
-    "build": "tsc",
-    "prepare": "npm run build",
-    "postversion": "git push && git push --tags"
+    "build": "npm-run-all clean compile bundle",
+    "clean": "rimraf lib",
+    "compile": "tsc",
+    "bundle": "rollup -c"
   },
   "devDependencies": {
-    "@types/node": "^12.12.7",
-    "apollo-client": "^2.6.4",
+    "@types/node": "^13.11.0",
+    "apollo-client": "^2.6.8",
     "apollo-link-http-common": "^0.2.15",
-    "graphql": "^14.5.8",
-    "graphql-tag": "^2.10.1",
-    "typescript": "^3.7.2",
-    "vue": "^2.6.10",
-    "vue-apollo": "^3.0.0",
-    "vue-class-component": "^7.1.0",
-    "vue-property-decorator": "^8.3.0"
+    "graphql": "^15.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.3.4",
+    "typescript": "^3.8.3",
+    "vue": "^2.6.11",
+    "vue-apollo": "^3.0.3",
+    "vue-class-component": "^7.2.3"
   },
   "peerDependencies": {
-    "apollo-client": "^2.6.x",
-    "graphql": "^14.x.x",
-    "typescript": "^3.x.x",
-    "vue": "^2.6.x",
-    "vue-apollo": "^3.x.x",
-    "vue-class-component": "^7.x.x"
+    "apollo-client": "^2.6",
+    "graphql": "^15",
+    "vue": "^2.6",
+    "vue-apollo": "^3",
+    "vue-class-component": "^7"
   }
 }

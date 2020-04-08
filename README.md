@@ -1,9 +1,9 @@
-# Vue Apollo Decorator
+# Vue Apollo Decorators
 
 ## Install
 
 ```bash
-npm i vue-apollo-decorator
+npm i vue-apollo-decorators
 ```
 
 ## Usage
@@ -56,4 +56,4 @@ export default {
 
 ## License
 
-MIT License
+ISC License
