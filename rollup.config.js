@@ -4,7 +4,6 @@ export default {
         file: "lib/index.umd.js",
         format: "umd",
         name: "VueApolloDecorators",
-        exports: "named",
         globals: {
             "vue-class-component": "VueClassComponent",
         },
