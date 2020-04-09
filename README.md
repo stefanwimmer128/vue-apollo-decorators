@@ -3,6 +3,7 @@
 ## Install
 
 ```bash
+yarn add vue-apollo-decorators
 npm i vue-apollo-decorators
 ```
 
@@ -21,18 +22,18 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class YourComponent extends Vue {
-  @SmartQuery(gql`{ todo { id, title, ... } }`) todo: Todo;
-  // OR
-  @SmartQuery<YourComponent, Todo.Query, Todo.Variables>({
-    query: gql`
-      query Todo($id: String!) { 
-        todo(id: $id) { id, title, ... } 
-      }`,
-    variables() {
-      return { id: '...' };
-    }
-  })
-  todo: Todo;
+    @SmartQuery(gql`{ todo { id, title, ... } }`) todo: Todo;
+    // OR
+    @SmartQuery<YourComponent, Todo.Query, Todo.Variables>({
+        query: gql`
+            query Todo($id: String!) {
+                todo(id: $id) { id, title, ... }
+            }`,
+        variables() {
+            return { id: '...' };
+        }
+    })
+    todo: Todo;
 }
 ```
 
@@ -40,17 +41,17 @@ is equivalent to
 
 ```ts
 export default {
-  apollo: {
-    todo: {
-      query: gql`
-        query Todo($id: String!) { 
-            todo(id: $id) { id, title, ... } 
-        }`,
-      variables() {
-        return { id: '...' };
-      }
+    apollo: {
+        todo: {
+            query: gql`
+                query Todo($id: String!) { 
+                        todo(id: $id) { id, title, ... } 
+                }`,
+            variables() {
+                return { id: '...' };
+            }
+        }
     }
-  }
 };
 ```
 
