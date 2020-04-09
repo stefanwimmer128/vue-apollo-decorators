@@ -1,7 +1,7 @@
 {
   "name": "vue-apollo-decorators",
   "author": "Stefan Wimmer <info@stefanwimmer128.eu>",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Use decorator to create Vue Apollo smart queries.",
   "main": "lib/index.umd.js",
   "module": "lib/index.js",
