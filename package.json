@@ -6,7 +6,7 @@
   "main": "lib/index.umd.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
-  "license": "MIT",
+  "license": "ISC",
   "keywords": [
     "vue",
     "apollo",
