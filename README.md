@@ -12,46 +12,113 @@ npm i vue-apollo-decorators
 There is currently 1 decorator.
 
 - [`@SmartQuery`](#SmartQuery)
+- [`@SubscribeToMore`](#SubscribeToMore)
 
-### <a id="SmartQuery"></a> `@SmartQuery(options: DocumentNode | QueryComponentProperty)` decorator
+### <a name="SmartQuery"></a> `@SmartQuery(options: DocumentNode | VueApolloQueryDefinition)` decorator
 
-```ts
-import gql from 'graphql-tag';
-import { SmartQuery } from 'vue-apollo-decorator';
-import { Vue, Component } from 'vue-property-decorator';
+``` ts
+import gql from "graphql-tag";
+import { SmartQuery } from "vue-apollo-decorator";
+import { Vue, Component } from "vue-property-decorator";
 
 @Component
 export default class YourComponent extends Vue {
-    @SmartQuery(gql`{ todo { id, title, ... } }`) todo: Todo;
-    // OR
     @SmartQuery<YourComponent, Todo.Query, Todo.Variables>({
         query: gql`
             query Todo($id: String!) {
-                todo(id: $id) { id, title, ... }
-            }`,
+                todo(id: $id) {
+                    id
+                    title
+                }
+            }
+        `,
         variables() {
-            return { id: '...' };
-        }
+            return {
+                id: this.id,
+            };
+        },
     })
     todo: Todo;
+    
+    id: number = 0;
 }
 ```
 
 is equivalent to
 
-```ts
+``` ts
 export default {
     apollo: {
         todo: {
             query: gql`
-                query Todo($id: String!) { 
-                        todo(id: $id) { id, title, ... } 
-                }`,
+                query Todo($id: String!) {
+                    todo(id: $id) {
+                        id
+                        title
+                    }
+                }
+            `,
             variables() {
-                return { id: '...' };
+                return {
+                    id: this.id,
+                };
+            },
+        },
+    },
+};
+```
+
+### <a name="SubscribeToMore"></a> `@SubscribeToMore(options: SubscribeToMoreOptions)` decorator
+
+``` ts
+import gql from "graphql-tag";
+import { SmartQuery, SubscribeToMore } from "vue-apollo-decorator";
+import { Vue, Component } from "vue-property-decorator";
+
+@Component
+export default class YourComponent extends Vue {
+    @SmartQuery(gql`{ todos { id, title } }`) todo: Todo;
+    @SubscribeToMore({
+        document: gql`
+            subscription TodoSubscription {
+                todo {
+                    id,
+                    title,
+                }
             }
-        }
-    }
+        `,
+        updateQuery(prevData, { subscriptionData }) {
+            return [...prevData, ...subscriptionData];
+        },
+    })
+    todos: Todo;
+}
+```
+
+is equivalent to
+
+``` ts
+export default {
+    apollo: {
+        todos: {
+            query: gql`{ todos { id, title } }`,
+            subscribeToMore: [
+                {
+                    document: gql`
+                        subscription TodoSubscription {
+                            todo {
+                                id
+                                title
+                            }
+                        }
+                    `,
+                    updateQuery(prevData, { subscriptionData }) {
+                        return [...prevData, ...subscriptionData];
+                    },
+                },
+            ],
+        },
+    },
 };
 ```
 
