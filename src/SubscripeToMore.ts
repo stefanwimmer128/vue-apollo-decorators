@@ -13,11 +13,11 @@ import {
     merge,
 } from "./utils";
 
-export default function SubscribeToMore<C = any, R = any, V = any>(options: Many<SubscribeToMoreOptionsPatched<C, R, V>>): VueDecorator {
+export default function SubscribeToMore<C = any, R = any, SV = any, SD = any>(options: Many<SubscribeToMoreOptionsPatched<C, R, SV, SD>>): VueDecorator {
     return createDecorator((componentOptions: any, key: string) => {
         componentOptions.apollo = extend(componentOptions.apollo || {}, {
             [key]: extend(componentOptions.apollo[key] || {}, {
-                subscribeToMore: merge([], componentOptions.apollo[key].subscribeToMore, options),
+                subscribeToMore: merge([], componentOptions.apollo[key].subscribeToMore || [], options),
             }),
         });
     });

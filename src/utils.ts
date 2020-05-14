@@ -1,3 +1,7 @@
+import {
+    Many,
+} from "./types";
+
 export function extend<T, S>(target: T, source: S): T & S;
 export function extend(target: any, ...sources: any) {
     for (let i = 0; i < sources.length; i++)
@@ -7,9 +11,7 @@ export function extend(target: any, ...sources: any) {
     return target;
 }
 
-
-
-export function merge<T>(target: T[], ...sources: (T | T[])[]): T[] {
+export function merge<T>(target: T[], ...sources: Many<T>[]): T[] {
     for (let i = 0; i < sources.length; i++)
         target.concat(sources[i]);
     return target;

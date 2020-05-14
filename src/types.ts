@@ -13,7 +13,7 @@ export type OverrideAllThis<O, T> = {
 
 export type VueApolloQueryDefinitionWithoutVariablesUpdateAndSubscribeToMore<R = any, V = any> = Omit<VueApolloQueryDefinition<R, V>, "variables" | "update" | "subscribeToMore">;
 
-export type SubscribeToMoreOptionsPatched<C = any, R = any, V = any, SV = any, SD = any> = OverrideAllThis<Omit<VueApolloSubscribeToMoreOptions<R, V>, "updateQuery" | "variables">, C> & {
+export type SubscribeToMoreOptionsPatched<C = any, R = any, SV = any, SD = any> = OverrideAllThis<Omit<VueApolloSubscribeToMoreOptions<R, SV>, "updateQuery" | "variables">, C> & {
     variables?: (this: C) => SV;
     updateQuery?: UpdateQueryFn<C, R, SV, SD>;
 };
@@ -30,5 +30,5 @@ export type UpdateFn<C = any, R = any, D = any> = (this: C, data: D) => R;
 export interface VueApolloQueryDefinitionPatched<C = any, R = any, V = any, D = any, SV = any, SD = any> extends OverrideAllThis<VueApolloQueryDefinitionWithoutVariablesUpdateAndSubscribeToMore<R, V>, C> {
     variables?: (this: C) => V | V;
     update?: UpdateFn<C, R, D>;
-    subscribeToMore?: Many<SubscribeToMoreOptionsPatched<C, R, V, SV, SD>>;
+    subscribeToMore?: Many<SubscribeToMoreOptionsPatched<C, R, SV, SD>>;
 }
