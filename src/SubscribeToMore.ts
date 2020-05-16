@@ -1,3 +1,6 @@
+import Vue, {
+    ComponentOptions,
+} from "vue";
 import {
     createDecorator,
     VueDecorator,
@@ -9,16 +12,15 @@ import {
 } from "./types";
 
 import {
-    extend,
-    merge,
+    mergeOptions,
 } from "./utils";
 
 export default function SubscribeToMore<C = any, R = any, SV = any, SD = any>(options: Many<SubscribeToMoreOptionsPatched<C, R, SV, SD>>): VueDecorator {
-    return createDecorator((componentOptions: any, key: string) => {
-        componentOptions.apollo = extend(componentOptions.apollo || {}, {
-            [key]: extend(componentOptions.apollo[key] || {}, {
-                subscribeToMore: merge([], componentOptions.apollo[key].subscribeToMore || [], options),
-            }),
+    return createDecorator((componentOptions: ComponentOptions<Vue>, key: string) => {
+        const apollo = componentOptions.apollo = componentOptions.apollo || {};
+        
+        apollo[key] = mergeOptions(apollo[key] as any, {
+            subscribeToMore: options,
         });
     });
 }

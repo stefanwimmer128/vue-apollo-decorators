@@ -19,32 +19,48 @@
     "url": "https://github.com/stefanwimmer128/vue-apollo-decorators"
   },
   "scripts": {
-    "build": "npm-run-all clean compile bundle",
+    "build": "npm-run-all clean compile test bundle",
     "clean": "rimraf lib",
     "compile": "tsc",
     "bundle": "rollup -c",
+    "test": "mocha -r test.js \"lib/**/*.test.js\"",
     "dev": "nodemon -w src -e ts -x \"npm-run-all build\""
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.9.6",
+    "@babel/register": "^7.9.0",
+    "@types/chai": "^4.2.11",
+    "@types/lodash": "^4.14.151",
+    "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.1",
     "@vue/apollo-option": "^4.0.0-alpha.7",
-    "apollo-client": "^2.6.9",
+    "apollo-client": "^2.6.10",
     "apollo-link-http-common": "^0.2.16",
+    "chai": "^4.2.0",
     "graphql": "^15.0.0",
-    "nodemon": "^2.0.3",
+    "graphql-tag": "^2.10.3",
+    "mocha": "^7.1.2",
+    "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "rollup": "^2.10.0",
+    "rollup": "^2.10.2",
     "rollup-plugin-sourcemaps": "^0.6.2",
+    "ts-node": "^8.10.1",
     "typescript": "^3.9.2",
     "vue": "^2.6.11",
+    "vue-apollo": "^3.0.3",
     "vue-class-component": "^7.2.3"
   },
   "peerDependencies": {
     "@vue/apollo-option": "^4",
-    "apollo-client": "^2.6",
+    "apollo-client": "^2",
     "graphql": "^15",
-    "vue": "^2.6",
+    "vue": "^2",
+    "vue-apollo": "^3",
     "vue-class-component": "^7"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   }
 }

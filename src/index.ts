@@ -3,4 +3,4 @@ export {
 } from "./SmartQuery";
 export {
     default as SubscribeToMore,
-} from "./SubscripeToMore";
+} from "./SubscribeToMore";

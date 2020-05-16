@@ -8,6 +8,7 @@ export default {
         name: "VueApolloDecorators",
         sourcemap: true,
         globals: {
+            "lodash": "_",
             "vue-class-component": "VueClassComponent",
         },
     },
@@ -15,6 +16,7 @@ export default {
         sourcemaps(),
     ],
     external: [
+        "lodash",
         "vue-class-component",
     ],
 };
