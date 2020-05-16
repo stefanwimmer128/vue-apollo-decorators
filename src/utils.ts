@@ -4,6 +4,7 @@ import {
 import {
     concat,
     isArray,
+    isObject,
     mergeWith,
 } from "lodash";
 
@@ -13,7 +14,7 @@ import {
 
 
 export function isDocumentNode(value: any) {
-    return typeof value === "object" && value !== null && (value as DocumentNode).kind === "Document";
+    return isObject(value) && (value as DocumentNode).kind === "Document";
 }
 
 export function normalizeOptions(options: DocumentNode | Partial<VueApolloQueryDefinitionPatched> = {}) {
@@ -27,8 +28,8 @@ export function normalizeOptions(options: DocumentNode | Partial<VueApolloQueryD
 }
 
 export function mergeOptions(original: DocumentNode | Partial<VueApolloQueryDefinitionPatched>, options: DocumentNode | Partial<VueApolloQueryDefinitionPatched>) {
-    return mergeWith(normalizeOptions(original), normalizeOptions(options), (objValue, srcValue) => {
-        if (isArray(objValue))
-            return concat(objValue, srcValue);
+    return mergeWith(normalizeOptions(original), normalizeOptions(options), (origVal, option) => {
+        if (isArray(origVal))
+            return concat(origVal, option);
     });
 }

@@ -1,7 +1,7 @@
 import {
     VueApolloQueryDefinition,
     VueApolloSubscribeToMoreOptions,
-} from "@vue/apollo-option/types/options";
+} from "vue-apollo/types/options";
 
 export type Many<T> = T | T[];
 
