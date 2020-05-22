@@ -2,6 +2,8 @@
 
 Use decorators to create Vue Apollo smart queries
 
+[Documentation](https://github.io/stefanwimmer128/vue-apollo-decorators)
+
 ## Install
 
 ```bash
