@@ -1,10 +1,16 @@
 # Vue Apollo Decorators
 
+Use decorators to create Vue Apollo smart queries
+
 ## Install
 
 ```bash
 yarn add vue-apollo-decorators
 npm i vue-apollo-decorators
+```
+
+``` html
+<script src="https://unpkg.com/vue-apollo-decorators@2.0.0"></script>
 ```
 
 ## Usage
@@ -46,7 +52,7 @@ export default class YourComponent extends Vue {
 
 is equivalent to
 
-``` ts
+``` js
 export default {
     apollo: {
         todo: {
@@ -97,7 +103,7 @@ export default class YourComponent extends Vue {
 
 is equivalent to
 
-``` ts
+``` js
 export default {
     apollo: {
         todos: {

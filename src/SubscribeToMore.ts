@@ -15,6 +15,16 @@ import {
     mergeOptions,
 } from "./utils";
 
+/**
+ * Subscribe To More Query
+ * @param C Vue Component
+ * @param R Type of returned value
+ * @param SV Type of subscription variables
+ * @param SD Type of subscription data
+ * @param options Subscription options
+ * @returnn Decorator
+ * @since 1.1.0
+ */
 export default function SubscribeToMore<C = any, R = any, SV = any, SD = any>(options: Many<SubscribeToMoreOptionsPatched<C, R, SV, SD>>): VueDecorator {
     return createDecorator((componentOptions: ComponentOptions<Vue>, key: string) => {
         const apollo = componentOptions.apollo = componentOptions.apollo || {};
