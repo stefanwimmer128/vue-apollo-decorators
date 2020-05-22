@@ -2,7 +2,7 @@
 
 Use decorators to create Vue Apollo smart queries
 
-[Documentation](https://github.io/stefanwimmer128/vue-apollo-decorators)
+[Documentation](https://stefanwimmer128.github.io/vue-apollo-decorators/)
 
 ## Install
 
